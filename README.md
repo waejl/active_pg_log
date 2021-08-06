@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-After performing the previous steps. Go into your project's root directory and type rails g active_pg_log:install or rails g active_pg_log:uninstall to remove the settings.
+After performing the previous steps. Go into your project's root directory and type `rails g active_pg_log:install` or `rails g active_pg_log:uninstall` to remove the settings.
 
 After executing the above command. Just add the ActivePgLog::ActiveLog module to your class. Example:
 
