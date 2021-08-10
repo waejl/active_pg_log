@@ -1,8 +1,8 @@
 # ActivePgLog
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/active_pg_log`. To experiment with that code, run `bin/console` for an interactive prompt.
+ActivePgLog will record all changes made to the class either using ActiveRecord or in the database itself. Generating a new tuple in the log table and ensuring traceability.
 
-TODO: Delete this and the text above, and describe your gem
+The ActivePgLog gem was conceived with the idea of ​​being a simple but flexible log.
 
 ## Installation
 
@@ -30,10 +30,6 @@ After executing the above command. Just add the ActivePgLog::ActiveLog module to
         include ActivePgLog::ActiveLog
         attr_accessor :name, :phone
     end
-
-ActivePgLog will record all changes made to the class either using ActiveRecord or in the database itself. Generating a new tuple in the log table and ensuring traceability.
-
-The ActivePgLog gem was conceived with the idea of ​​being a simple but flexible log.
 
 ## Development
 
