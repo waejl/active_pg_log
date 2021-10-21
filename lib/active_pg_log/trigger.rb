@@ -2,7 +2,7 @@ class ActivePgLog::ActiveTrigger
   attr_accessor :dados
 
   def initialize
-    @dados = ActiveRecord::Base.connection.select_all(query)
+    @dados = self.connection.select_all(query)
   end
 
   def include?(trigger_name, table_name)
