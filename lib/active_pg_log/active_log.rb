@@ -9,7 +9,7 @@ module ActivePgLog::ActiveLog
     clazz.connection.execute(create_log_ddl_trigger(clazz))
   end
 
-  def disable_log_ddl_trigger
+  def disable_log_ddl_trigger(clazz)
     clazz.connection.execute("drop trigger if exists trigger_log_#{self.class.table_name}_insert_update on #{self.class.table_name} cascade;")
     nil
   end
