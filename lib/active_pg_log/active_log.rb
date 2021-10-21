@@ -6,11 +6,11 @@ module ActivePgLog::ActiveLog
 
     return if @active_trigger.include?("trigger_log_#{clazz.table_name}_insert_update", clazz.table_name)
 
-    ActiveRecord::Base.connection.execute(create_log_ddl_trigger(clazz))
+    clazz.connection.execute(create_log_ddl_trigger(clazz))
   end
 
   def disable_log_ddl_trigger
-    ActiveRecord::Base.connection.execute("drop trigger if exists trigger_log_#{self.class.table_name}_insert_update on #{self.class.table_name} cascade;")
+    clazz.connection.execute("drop trigger if exists trigger_log_#{self.class.table_name}_insert_update on #{self.class.table_name} cascade;")
     nil
   end
 
