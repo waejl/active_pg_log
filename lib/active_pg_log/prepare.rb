@@ -3,20 +3,20 @@
 class Prepare
   class << self
     def destroy
-      return unless self.connection.tables.include?('active_pg_log_tables')
+      return unless ActiveRecord::Base.connection.tables.include?('active_pg_log_tables')
 
-      self.transaction do
-        self.connection.execute('drop table if exists active_pg_log_tables cascade;')
-        self.connection.execute('drop function if exists active_pg_loging() cascade;')
+      ActiveRecord::Base.transaction do
+        ActiveRecord::Base.connection.execute('drop table if exists active_pg_log_tables cascade;')
+        ActiveRecord::Base.connection.execute('drop function if exists active_pg_loging() cascade;')
       end
     end
 
     def setup
-      return if self.connection.tables.include?('active_pg_log_tables')
+      return if ActiveRecord::Base.connection.tables.include?('active_pg_log_tables')
 
-      self.connection.transaction do
-        self.connection.execute(log_ddl_table)
-        self.connection.execute(log_ddl_function)
+      ActiveRecord::Base.connection.transaction do
+        ActiveRecord::Base.connection.execute(log_ddl_table)
+        ActiveRecord::Base.connection.execute(log_ddl_function)
       end
     end
 

@@ -1,7 +1,41 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
-require "active_pg_log"
+require 'bundler/setup'
+require 'active_pg_log'
+require 'active_record'
+
+begin
+  ActiveRecord::Base.establish_connection({
+                                            adapter: 'postgresql',
+                                            database: 'active_pg_log',
+                                            min_messages: 'warning',
+                                            host: 'localhost',
+                                            username: 'postgres',
+                                            password: 'password'
+                                          })
+  connection = ActiveRecord::Base.connection
+  connection.execute('SELECT 1')
+  connection.execute('create table if not exists active_pg_log_tables(
+    id serial not null,
+    name varchar(255)
+  );')
+  # connection.execute('create database active_pg_log;')
+  # connection.reconect!({
+  #                        adapter: 'postgresql',
+  #                        database: 'active_pg_log',
+  #                        min_messages: 'warning',
+  #                        host: 'localhost',
+  #                        username: 'postgres',
+  #                        password: 'password'
+  #                      })
+rescue StandardError => e
+  puts '-' * 80
+  puts 'Unable to connect to database.  Please run:'
+  puts
+  puts '    createdb pg_audit_log_test'
+  puts '-' * 80
+  raise e
+end
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
@@ -10,5 +44,5 @@ require "active_pg_log"
 # require "pry"
 # Pry.start
 
-require "irb"
+require 'irb'
 IRB.start(__FILE__)
