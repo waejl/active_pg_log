@@ -14,7 +14,7 @@ gem 'active_pg_log'
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
